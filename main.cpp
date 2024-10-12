@@ -1,6 +1,9 @@
 #include <iostream>
+#include "Matrix.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Matrix mx(6);
+    mx.FillMatrix();
+    mx.Display();
     return 0;
 }
