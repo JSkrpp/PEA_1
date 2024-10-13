@@ -5,7 +5,7 @@
 #ifndef PEA1_MATRIX_H
 #define PEA1_MATRIX_H
 #include <vector>
-
+#include <string>
 
 
 class Matrix {
@@ -18,9 +18,13 @@ class Matrix {
             }
         }
 
-        void FillMatrix();
+        void FillMatrixSymmetrical();
 
         void Display();
+
+        void FillMatrixAsymmetrical();
+
+        void LoadMatrixFromFile(const std::string& filename);
 
 };
 

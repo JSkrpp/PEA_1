@@ -7,4 +7,6 @@ add_executable(PEA1 main.cpp
         Matrix.cpp
         Matrix.h
         Matrix.cpp
+        Algorithms.cpp
+        Algorithms.h
 )
