@@ -12,6 +12,6 @@ int main() {
     std::cin >> filename;
     FileOpener fileOpener(filename);
     fileOpener.AppRun();
-    system("break");
+    std::system("pause");
     return 0;
 }

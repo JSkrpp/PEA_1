@@ -62,7 +62,7 @@ void Pomiar::Badanie() {
         QueryPerformanceCounter(&end);
         elapsedTime = static_cast<double>(end.QuadPart - start.QuadPart) / frequency.QuadPart * 1000;
         timeRand+=elapsedTime;
-        std::cout << pathBF << " " << pathCN << " " << pathRand << std:: endl;
+        std::cout << pathBF << "; " << pathCN << "; " << pathRand << ";" <<std:: endl;
     }
     file<<"Sredni czas metody przeszukania całkowitego " << timeBF/100 << " ms" << std::endl;
     file<<"Sredni czas metody najblizszego sasiada " << timeCN/100 << " ms" <<std::endl;

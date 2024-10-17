@@ -38,6 +38,7 @@ void FileOpener::AppRun() {
         std::cout<<"Najblizszy sasiad, droga: " << CN << std::endl;
         std::cout<<"Algorytm losowy: " << RA << std::endl;
     }
+    else std::cout << "Blad otwierania pliku! " << std::endl;
 }
 
 std::string FileOpener::getExtension(std::string filename) {
