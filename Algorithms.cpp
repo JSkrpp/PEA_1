@@ -10,7 +10,7 @@ Algorithms::Algorithms(int size){
     this->V = size;
 }
 
-void Algorithms::BruteForceSymm(Matrix mx) {
+int Algorithms::BruteForceSymm(Matrix mx) {
     std::vector<int> vertex;
     int start = 0;  // wierzcholek poczatkowy indeksowany 0; standaryzacja metodologii
     for(int i = 1; i < V; i++){
@@ -33,18 +33,15 @@ void Algorithms::BruteForceSymm(Matrix mx) {
         min_path = std::min(min_path, current_path);
 
     } while (std::next_permutation(vertex.begin(), vertex.end()));
-
-    std::cout << min_path << std::endl;
+    return min_path;
 }
 
 
-void Algorithms::CloseNeighbor(Matrix mx) {
-    int weight[V];
+int Algorithms::CloseNeighbor(Matrix mx) {
     bool queue[V];
     int current;
 
     int min_path = INT_MAX;
-
 
     for(int i = 0; i < V; i++){ // algorytm przeprowadzany V razy, gdzie V jest iloscia wierzcholkow
         for (int reset_bool = 0; reset_bool < V; reset_bool++){
@@ -63,29 +60,61 @@ void Algorithms::CloseNeighbor(Matrix mx) {
                     lowest_index = w;
                 }
             }
-            std::cout<< "Najbliszy wierzcholek: " << lowest_index << ", waga: " << current_lowest << std::endl;
             queue[lowest_index] = false;
             current_path += mx.grid[current][lowest_index];
             current = lowest_index;
         }
         current_path += mx.grid[lowest_index][i];
-        std::cout << "Droga od wierzcholka " << i << " " << current_path << std::endl;
         min_path = std::min(min_path, current_path);
+        }
+    return min_path;
+}
 
+int Algorithms::RandomAlgo(Matrix mx) {
+    int start = 0;
+    bool set[V]; // set sprawdzajacy wystapienie wierzcholka w cyklu
+    int curr;
+    int next;
+    int higher_count = 0; // licznik ilosci wykonań algorytmu bez poprawy pod rząd
+    bool higher = false; // flaga rozwiązania gorszego od dotychczasowego najlepszego
+    int min_path = INT_MAX;
+    int benchamrk = V*V; // ustalenie maksymalnej ilości wykonań algorytmu bez poprawy: V^2
+    std::random_device rd;
+    std::mt19937 mt(rd());
+
+    do {
+        int current_path = 0;
+        curr = start;
+        for (int i = 1; i < V; i++) {
+            set[i] = false;
         }
 
-    std::cout << min_path << std::endl;
-}
-
-void Algorithms::CloseNeighborAsymm(Matrix mx) {
-
-}
-
-void Algorithms::RandomSymm(Matrix mx) {
-
-}
-
-void Algorithms::RandomAsymm(Matrix mx) {
-
+        for (int w = 1; w < V; w++) {
+            std::uniform_int_distribution<int> dist(1, V-1);
+            do {
+                next = dist(mt);
+                if (!set[next]) break;
+            } while (true);
+                set[next] = true;
+                current_path += mx.grid[curr][next];
+                curr = next;
+            if (current_path >= min_path){
+                higher_count++;
+                higher = true;
+                break;
+            }
+        }
+        if(!higher) {
+            current_path += mx.grid[curr][start];
+            if(current_path <= min_path) {
+                min_path = std::min(current_path, min_path);
+                higher_count = 0;
+            } else {
+                higher_count++;
+            }
+        }
+        higher = false;
+    } while (higher_count < benchamrk);
+    return min_path;
 }
 

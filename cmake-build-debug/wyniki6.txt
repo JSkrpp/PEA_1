@@ -1,0 +1,7 @@
+Badanie 100 losowych instancji problemu komiwojazera dla rozmiaru problemu 6
+Sredni czas metody przeszukania całkowitego 0.020487 ms
+Sredni czas metody najblizszego sasiada 0.002817 ms
+Sredni czas metody losowej 0.025428 ms
+Srednia dlugosc rozwiazania optymalnego 186
+Srednia roznica pomiedzy algorytmem najblizszego sasiada, a rozwiazaniem optymalnym 2.22989%
+Srednia roznica pomiedzy algorytmem losowym, a rozwiazaniem optymalnym 5.669%

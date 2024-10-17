@@ -1,0 +1,1 @@
+Badanie 100 losowych instancji problemu komiwojazera dla rozmiaru problemu20

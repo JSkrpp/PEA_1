@@ -12,15 +12,11 @@ public:
     int V;
     Algorithms(int size);
 
-    void BruteForceSymm(Matrix mx);
+    int BruteForceSymm(Matrix mx);
 
-    void CloseNeighbor(Matrix mx);
+    int CloseNeighbor(Matrix mx);
 
-    void CloseNeighborAsymm(Matrix mx);
-
-    void RandomSymm(Matrix mx);
-
-    void RandomAsymm(Matrix mx);
+    int RandomAlgo(Matrix mx);
 
 };
 
