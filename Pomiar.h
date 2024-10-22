@@ -8,8 +8,10 @@
 
 class Pomiar {
 public:
-    Pomiar(int size);
+    Pomiar(int size, int instances, int randFloor);
     int size;
+    int instances;
+    int randFloor;
 
     void Badanie();
 

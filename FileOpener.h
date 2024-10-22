@@ -15,7 +15,6 @@ public:
 
     void AppRun();
 
-    static std::string getExtension(std::string filename);
 };
 
 

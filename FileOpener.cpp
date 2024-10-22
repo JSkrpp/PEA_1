@@ -1,7 +1,3 @@
-//
-// Created by Admin on 17.10.2024.
-//
-
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -15,35 +11,33 @@ FileOpener::FileOpener(std::string filename) {
 }
 
 void FileOpener::AppRun() {
-    std::string extension = getExtension(filename);
     std::ifstream infile(filename);
-    if (extension == "txt")
-    {
-        std::ifstream infile(filename);
-        int size;
-        infile >> size;
-        Pomiar pom(size);
-        pom.Badanie();
-    }
-    else if(extension == "atsp") {
-        int size;
-        infile >> size;
-        Algorithms algo(size);
-        Matrix mx(size);
-        mx.LoadMatrixFromFile(filename);
-        int BF = algo.BruteForceSymm(mx);
-        int CN = algo.CloseNeighbor(mx);
-        int RA = algo.RandomAlgo(mx);
-        std::cout<<"Przeszukanie calkowite, droga: " << BF << std::endl;
-        std::cout<<"Najblizszy sasiad, droga: " << CN << std::endl;
-        std::cout<<"Algorytm losowy: " << RA << std::endl;
-    }
-    else std::cout << "Blad otwierania pliku! " << std::endl;
+    int size, instances, randFloor, testSize;
+    std::string testFile;
+    std::getline(infile, testFile);
+    std::cout << "Testing matrix: "<< testFile << std::endl;
+    infile >> size;
+    infile >> instances;
+    infile >> randFloor;
+
+    std::ifstream file2(testFile);
+    file2 >> testSize;
+    Matrix mx(testSize);
+    mx.LoadMatrixFromFile(testFile);
+
+    Algorithms alg(testSize);
+    int testBF = alg.BruteForceSymm(mx);
+    int testCN = alg.CloseNeighbor(mx);
+    int testRand = alg.RandomAlgo(mx, testSize*testSize);
+
+    std::cout << "Brute force: " << testBF << std::endl;
+    std::cout << "Closest Neighbour: " << testCN << std::endl;
+    std::cout << "Random: " << testRand  << std::endl;
+
+    Pomiar pom(size, instances, randFloor);
+    pom.Badanie();
+
 }
 
-std::string FileOpener::getExtension(std::string filename) {
-    size_t dot = filename.rfind('.');
-    if (dot == std::string::npos || dot == filename.size() - 1 ) return "";
-    return filename.substr(dot+1);
-}
+
 

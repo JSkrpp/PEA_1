@@ -1,23 +1,26 @@
-//
-// Created by Admin on 12.10.2024.
-//
-
 #include "Matrix.h"
 #include <vector>
 #include <iostream>
 #include <random>
 #include <fstream>
 
-void Matrix::FillMatrixSymmetrical() {
+Matrix::Matrix(int size) { // konstruktor klasy Matrix, alokujacy miejsce w pamieci dla tablicy
+    grid.resize(size);
+    for (int i = 0; i < size; i++){
+        grid[i].resize(size);
+    }
+}
+
+void Matrix::FillMatrixSymmetrical() { // Metoda wypelniajaca tablice w sposob symetryczny
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(1, 100);
+    std::uniform_int_distribution<int> dist(1, 100); // generator liczb losowych z zasiegu 1-100
     for (int i = 0; i < grid.size(); i++){
         for (int j = 0; j <= i; j++){
             int weight = dist(mt);
             if (i == j)
             {
-                grid [i][j] = -1;
+                grid [i][j] = -1; // brak krawedzi wchodzacej do wierzcholka wyjsciowego
             }
             else {
                 grid[i][j] = weight;
@@ -60,7 +63,6 @@ void Matrix::LoadMatrixFromFile(const std::string& filename) {
     std::ifstream infile(filename);
     if (infile.is_open()) {
         infile >> size;
-        std::cout << size << std::endl;
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 infile >> grid[i][j];

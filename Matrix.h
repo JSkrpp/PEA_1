@@ -11,12 +11,7 @@
 class Matrix {
     public:
         std::vector<std::vector<int>> grid;
-        Matrix(int size){
-            grid.resize(size);
-            for (int i = 0; i < size; i++){
-                grid[i].resize(size);
-            }
-        }
+       Matrix(int size);
 
         void FillMatrixSymmetrical();
 

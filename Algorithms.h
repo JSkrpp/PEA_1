@@ -16,7 +16,7 @@ public:
 
     int CloseNeighbor(Matrix mx);
 
-    int RandomAlgo(Matrix mx);
+    int RandomAlgo(Matrix mx, int randFloor);
 
 };
 
